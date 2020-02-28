@@ -1,0 +1,59 @@
+/*
+Theme Name: Client Portal
+Theme URI: https://acmeinc.com
+Author: WebDevStudios
+Author URI: https://webdevstudios.com/
+Description: A spiffy new theme for Acme Inc. by WebDevStudios based on wd_s
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: client-portal
+Tags: custom
+
+This theme, like WordPress, is licensed under the GPL.
+
+Based on Underscores http://underscores.me/, (C) 2012-2017 Automattic, Inc.
+*/
+
+//-----------------------------------------
+// Extras
+//-----------------------------------------
+@import 'vendor/sanitize/sanitize';
+
+//-----------------------------------------
+// Utilities
+//-----------------------------------------
+
+// Helper functions.
+@import 'utilities/functions/index';
+
+// Mixins.
+@import 'utilities/mixins/index';
+
+// Global variables.
+@import 'utilities/variables/index';
+
+// Quick Helpers.
+@import 'utilities/helpers/index';
+
+//-----------------------------------------
+// Theme Styles
+//-----------------------------------------
+
+// Global elements.
+@import 'base/index';
+
+// Layout.
+@import 'structure/index';
+
+// Modules.
+@import 'modules/index';
+
+// Plugin overrides.
+@import 'plugins/index';
+
+// Views/Pages.
+@import 'views/index';
+
+// WP Widgets.
+@import 'widgets/index';
