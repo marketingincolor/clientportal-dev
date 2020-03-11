@@ -43,19 +43,14 @@ function portal_admin_customizations() {
 	}
 }
 
+
+
 // customize admin bar css
 function override_admin_bar_css() { 
-
-   if ( is_admin_bar_showing() ) { ?>
-
-
-      <style type="text/css">
-         /* add your style here */
-         #wpadminbar { background:#c4612b; }
-      </style>
-
-   <?php }
-
+	if ( is_admin_bar_showing() && !current_user_can('administrator') ) {
+	echo ' <style type="text/css"> #wpadminbar { background:#c4612b; } #wpcontent {max-width:960px; margin-left:auto; margin-right:auto;
+	}</style>';
+    }
 }
 
 // on backend area
@@ -63,8 +58,6 @@ add_action( 'admin_head', 'override_admin_bar_css' );
 
 // on frontend area
 add_action( 'wp_head', 'override_admin_bar_css' );
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -88,10 +81,6 @@ add_action('acf/input/admin_head', 'my_acf_admin_head');
 function my_acf_admin_head() {
 ?>
 <style type="text/css">
-
-	#wpcontent {
-		max-width:960px; margin-left:auto; margin-right:auto;
-	}
 
     .acf-flexible-content .layout .acf-fc-layout-handle {
         /*background-color: #00B8E4;*/
@@ -130,7 +119,7 @@ function my_acf_admin_head() {
 
 /*
 |--------------------------------------------------------------------------
-| Admin Menu Filter Testing
+| Admin Menu Filter Testing - Not needed with CAI Plugin!!
 |--------------------------------------------------------------------------
 */
 function filter_admin_menues() {
@@ -234,7 +223,7 @@ class site_custom_dashboard {
 
 	function scd_redirect_dashboard() {
 
-		if( is_admin() ) {
+		if( /*is_admin()*/ !current_user_can('administrator') ) {
 			$screen = get_current_screen();
 			
 			if( $screen->base == 'dashboard' ) {
