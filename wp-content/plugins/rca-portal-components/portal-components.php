@@ -44,6 +44,11 @@ function portal_admin_customizations() {
 }
 
 
+/*
+|--------------------------------------------------------------------------
+| Admin Bar Customization
+|--------------------------------------------------------------------------
+*/
 
 // customize admin bar css
 function override_admin_bar_css() { 

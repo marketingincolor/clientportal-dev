@@ -7,7 +7,34 @@
 require_once( ABSPATH . 'wp-load.php' );
 require_once( ABSPATH . 'wp-admin/admin.php' );
 require_once( ABSPATH . 'wp-admin/admin-header.php' );
+
+
+
+
+/** Current User Customizations for Dashboard page */
+$current_user = wp_get_current_user();
+$user_metakey = 'user_' . $current_user->ID;
+/*
+ * @example Safe usage: $current_user = wp_get_current_user();
+ * if ( ! ( $current_user instanceof WP_User ) ) {
+ *     return;
+ * }
+ */
+printf( __( 'Username: %s <br />', 'textdomain' ), esc_html( $current_user->user_login ) );
+printf( __( 'User email: %s <br />', 'textdomain' ), esc_html( $current_user->user_email ) );
+printf( __( 'User first name: %s <br />', 'textdomain' ), esc_html( $current_user->user_firstname ) );
+printf( __( 'User last name: %s <br />', 'textdomain' ), esc_html( $current_user->user_lastname ) );
+printf( __( 'User display name: %s <br />', 'textdomain' ), esc_html( $current_user->display_name ) );
+printf( __( 'User ID: %s <br />', 'textdomain' ), esc_html( $current_user->ID ) );
+$term = get_field( 'company_name', 'user_3' );
+if ( $term ):
+	printf( __( 'Company Name: %s <br />', 'textdomain' ), esc_html( $term->name ) );
+endif;
 ?>
+
+
+
+
 
 <div class="wrap about-wrap">
 	<h1><?php _e( 'RCA Client Portal' ); ?></h1>
@@ -32,7 +59,16 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 		<div class="feature-section images-stagger-right">
 			<h4><?php _e( 'Risus Consectetur Elit Sollicitudin' ); ?></h4>
 			<p><?php _e( 'Cras mattis consectetur purus sit amet fermentum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vestibulum id ligula porta felis euismod semper. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Nulla vitae elit libero, a pharetra augue. Donec sed odio dui.' ); ?></p>
+
+
+
+<?php if( !current_user_can('administrator') ) : ?>
+			<a class="button button-primary button-hero XXXload-customize XXXhide-if-no-customize" href="./edit.php?post_type=report"><?php _e( 'View Reports' ); ?></a>
+<?php endif; ?>
+
+<?php if( current_user_can('administrator') ) : ?>
 			<a class="button button-primary button-hero XXXload-customize XXXhide-if-no-customize" href="./edit.php?post_type=report"><?php _e( 'Manage Client Reports' ); ?></a>
+<?php endif; ?>
 
 			<h4><?php _e( 'Mattis Justo Purus' ); ?></h4>
 			<p><?php _e( 'Aenean lacinia bibendum nulla sed consectetur. Donec id elit non mi porta gravida at eget metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
