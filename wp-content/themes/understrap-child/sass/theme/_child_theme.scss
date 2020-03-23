@@ -3,10 +3,19 @@
 	margin-left:auto; 
 }
 
-.report-template-default .site-main { margin: 1em 0em; }
+/*.report-template-default .site-main { margin: 1em 0em; }*/
 
-.report-header { background-color:inherit; }
-.paragraph-section { background-color:inherit; }
-.bullet-list {background-color:#666;}
-.icon-list { background-color:#aaa; }
-.time-budget { background-color:inherit; }
+.single-report #main-nav { background-color:#fff!important; }
+
+.report-template-default  {  
+	.container-background { background-position:center; background-size:cover; }
+	.report-header, .next-steps { background-color:#c4612b; color:#fff; }
+	.paragraph-section { background-color:#F8F7F5; }
+	.bullet-list {background-color:#998F86;}
+	.icon-list { 
+		background-color:#D7D2CC; 
+		list-style:none; 
+		.icon-item { display:inline-grid; }
+	}
+	.time-budget { background-color:#1B3355; color:#fff; }
+}

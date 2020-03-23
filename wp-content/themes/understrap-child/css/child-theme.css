@@ -11379,22 +11379,32 @@ a.skip-link {
   margin-right: auto;
   margin-left: auto; }
 
-.report-template-default .site-main {
-  margin: 1em 0em; }
+/*.report-template-default .site-main { margin: 1em 0em; }*/
+.single-report #main-nav {
+  background-color: #fff !important; }
 
-.report-header {
-  background-color: inherit; }
+.report-template-default .container-background {
+  background-position: center;
+  background-size: cover; }
 
-.paragraph-section {
-  background-color: inherit; }
+.report-template-default .report-header, .report-template-default .next-steps {
+  background-color: #c4612b;
+  color: #fff; }
 
-.bullet-list {
-  background-color: #666; }
+.report-template-default .paragraph-section {
+  background-color: #F8F7F5; }
 
-.icon-list {
-  background-color: #aaa; }
+.report-template-default .bullet-list {
+  background-color: #998F86; }
 
-.time-budget {
-  background-color: inherit; }
+.report-template-default .icon-list {
+  background-color: #D7D2CC;
+  list-style: none; }
+  .report-template-default .icon-list .icon-item {
+    display: inline-grid; }
+
+.report-template-default .time-budget {
+  background-color: #1B3355;
+  color: #fff; }
 
 /*# sourceMappingURL=child-theme.css.map */

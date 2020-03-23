@@ -34,10 +34,12 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 
 
+<?php if( get_field('summary_background') ):
+    $sum_bgnd = get_field('summary_background'); 
+endif; ?>
 
 
-
-<div class="container-background report-header" style="background:#ddd; padding:2em 0em;">
+<div class="container-background report-header" style="padding:2em 0em; background-image: url(<?php echo $sum_bgnd; ?>);">
 	<div class="container">
 		<h2><?php the_title(); ?></h2>
 
@@ -50,7 +52,8 @@ $container = get_theme_mod( 'understrap_container_type' );
 	<?php endif; ?>
 
 	<?php if(function_exists('mpdf_pdfbutton')) mpdf_pdfbutton(); ?>
-
+	<?php if(function_exists('mpdf_pdfbutton')) mpdf_pdfbutton(false, 'Download Report in PDF Format', 'my login text'); ?>
+	<a href="<?php the_permalink();?>?output=pdf" class="button"><buttton>PDF Button</buttton></a>
 	</div>
 </div>
 
@@ -65,9 +68,11 @@ if( have_rows('report_content') ):
 
         <?php // Case: Paragraph layout
         if( get_row_layout() == 'paragraph' ):
-            $p_title = get_sub_field('title'); ?>
-			<div class="container-background paragraph-section" style="padding:2em 0em;"> 
+            $p_title = get_sub_field('title'); 
+            $p_bgnd = get_sub_field('background'); ?>
+			<div class="container-background paragraph-section" style="padding:2em 0em; background-image: url(<?php echo $p_bgnd; ?>);"> 
 			<div class="container"> 
+				<?php //echo $bgnd; ?>
 				<h3 class="paragraph-title"><?php echo $p_title; ?></h3>
 
 			<?php if( have_rows('content') ): ?>
@@ -91,8 +96,9 @@ if( have_rows('report_content') ):
 
         <?php // Case: Bullet List layout
         elseif( get_row_layout() == 'bullet_list' ):
-            $b_title = get_sub_field('title'); ?>
-			<div class="container-background bullet-list" style="padding:2em 0em;"> 
+            $b_title = get_sub_field('title'); 
+            $b_bgnd = get_sub_field('background');?>
+			<div class="container-background bullet-list" style="padding:2em 0em; background-image: url(<?php echo $b_bgnd; ?>);"> 
 			<div class="container"> 
 				<h3 class="bullet-title"><?php echo $b_title; ?></h3>
 
@@ -123,8 +129,9 @@ if( have_rows('report_content') ):
 
         <?php // Case: Icon List Layout
         elseif( get_row_layout() == 'icon_list' ):
-            $i_title = get_sub_field('title'); ?>
-			<div class="container-background icon-list" style="padding:2em 0em;"> 
+            $i_title = get_sub_field('title'); 
+            $i_bgnd = get_sub_field('background');?>
+			<div class="container-background icon-list" style="padding:2em 0em; background-image: url(<?php echo $i_bgnd; ?>);"> 
 			<div class="container"> 
 				<h3 class="icon-title"><?php echo $i_title; ?></h3>
 
@@ -164,8 +171,9 @@ if( have_rows('report_content') ):
             $t_budget = get_sub_field('budget');
             $t_total = get_sub_field('total_hours');
             $t_used = get_sub_field('hours_used');
-            $t_remaining = get_sub_field('hours_remaining'); ?>
-			<div class="container-background time-budget" style="padding:2em 0em;"> 
+            $t_remaining = get_sub_field('hours_remaining');
+            $t_bgnd = get_sub_field('background'); ?>
+			<div class="container-background time-budget" style="padding:2em 0em; background-image: url(<?php echo $t_bgnd; ?>);"> 
 			<div class="container"> 
 				<h3 class="budget-title"><?php echo $t_title; ?></h3>
 				<p><?php echo $t_budget; ?></p>
@@ -187,9 +195,27 @@ endif;
 ?>
 
 
+	<?php if( get_field('next_steps_background') ):
+	    $ns_bgnd = get_field('next_steps_background'); 
+	endif; ?>
 
-
-
+			<div class="container-background next-steps" style="padding:2em 0em; background-image: url(<?php echo $ns_bgnd; ?>);"> 
+			<div class="container"> 
+			<?php if( have_rows('next_steps') ): ?>
+				<h3 class="steps-title">Next Steps</h3>
+				<ol class="next-steps-list">
+				<?php while( have_rows('next_steps') ): the_row(); 
+					$step_text = get_sub_field('step'); ?>
+					<li class="single-step">
+					<?php if( $step_text ): ?>
+						<p><?php echo $step_text; ?></p>
+					<?php endif; ?>
+					</li>
+				<?php endwhile; ?>
+				</ol>
+			<?php endif; ?>
+			</div>
+			</div>
 
 
 				<?php endwhile; // end of the loop. ?>
