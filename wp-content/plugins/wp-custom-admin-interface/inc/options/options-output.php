@@ -751,7 +751,7 @@ function wp_custom_admin_interface_help_callback(){
             <p><?php _e('Before creating support requests, it is important you read the following rules: 
                 
                 <ol>
-                    <li>The custom admin menu and custom toolbar are beta features, we <strong>DO NOT PROVIDE SUPPORT</strong> for this. We understand that there may be technical issues working with certain plugins or the frontend vs the backend of the toolbar. If you are experiencing issues, sorry, please either use your expertise and contribute code to the plugin or find another plugin which suits your needs. You did not pay any money for this plugin and I spent a good month working on this + months of solving issues, so you get what you pay for. I know life sucks.</li>
+                    <li>The custom admin menu and custom toolbar have limited support and we can only help you with general issues only. We don\'t guarantee these features for every possible theme and plugin combination especially when developers set things up in non-compliant ways. So don\'t ask us: "how come this doesn\'t work with this or that" as I won\'t be able to help you unfortunately, and not to mention the WordPress.org forum rules don\'t allow the exchange of login details so we can\'t diagnose issues on your specific site!</li>
                     <li><strong>As part of support I do not provide customisation services or code samples.</strong> If you need help with the implementation of the plugin or need to achieve something specific please <a href="mailto:info@northernbeacheswebsites.com.au">email me</a> and I can provide an estimate for the work.</li> 
                     <li>Please include the diagnostic information mentioned below, otherwise I will not bother answering your request.</li>     
                     <li>Please ensure you are using the latest version of WordPress and the latest version of the plugin, and clear your browser cache.</li>                    
@@ -1040,7 +1040,7 @@ function wp_custom_admin_interface_custom_css_code_render() {
             </div>    
 
             <div class="notice notice-info inline" >
-                <p><i class="fa fa-info-circle information-icon" aria-hidden="true"></i> <?php _e( 'Want to create multiple admin menus? Check out <a target="_blank" target="_blank" href="https://northernbeacheswebsites.com.au/custom-admin-interface-pro/">Custom Admin Interface Pro</a>!', 'wp-custom-admin-interface' ); ?></p>
+                <p><i class="fa fa-info-circle information-icon" aria-hidden="true"></i> <?php _e( 'Want to create multiple admin menus? Check out <a target="_blank" href="https://northernbeacheswebsites.com.au/custom-admin-interface-pro/">Custom Admin Interface Pro</a>!', 'wp-custom-admin-interface' ); ?></p>
             </div>   
             
         </td>
@@ -1560,7 +1560,7 @@ function wp_custom_admin_interface_top_level_menu_render() {
                 <p><i class="fa fa-info-circle information-icon" aria-hidden="true"></i> <?php _e( 'Modify the main menu of WordPress. <em>Please note if you are moving a sub-level menu item to the top level menu you may get the following error message when trying to access the page: "Sorry, you are not allowed to access this page." To get around this for the moment I recommend firstly restoring your menu back to the WordPress default and instead of moving the menu item, keep it where it is and hide it, and then create a new menu item on the top level that goes to the same link as the hidden child menu item.</em>', 'wp-custom-admin-interface' ); ?></p>
             </div>    
             <div class="notice notice-warning inline" >
-                <p><i class="fa fa-exclamation-triangle information-icon" aria-hidden="true"></i> <?php _e( 'This feature is a BETA feature. We do not provide support for this feature. If it works great, if it does not work, sorry.', 'wp-custom-admin-interface' ); ?></p>
+                <p><i class="fa fa-exclamation-triangle information-icon" aria-hidden="true"></i> <?php _e( 'We can\'t guarantee this menu editor will work with every possible plugin and theme combination as different developers sometimes don\'t do things the WordPress way! Therefore support is limited for the admin menu to <strong>general functionality only</strong>. For comprehensive support for your specific environment we recommend checking out the <a href="https://northernbeacheswebsites.com.au/custom-admin-interface-pro/" target="_blank">pro version</a> where we can get things working for your environment and provide a money-back guarantee.', 'wp-custom-admin-interface' ); ?></p>
             </div>   
             
         </td>
@@ -2141,7 +2141,7 @@ function wp_custom_admin_interface_primary_toolbar_menu_render() {
                 <p><i class="fa fa-info-circle information-icon" aria-hidden="true"></i> <?php _e( 'Modify the main toolbar of WordPress. This is the bar that displays at the top of the admin screen.', 'wp-custom-admin-interface' ); ?></p>
             </div>  
             <div class="notice notice-warning inline" >
-                <p><i class="fa fa-exclamation-triangle information-icon" aria-hidden="true"></i> <?php _e( 'This feature is a BETA feature. We do not provide support for this feature. If it works great, if it does not work, sorry.', 'wp-custom-admin-interface' ); ?></p>
+                <p><i class="fa fa-exclamation-triangle information-icon" aria-hidden="true"></i> <?php _e( 'We can\'t guarantee this toolbar editor will work with every possible plugin and theme combination as different developers sometimes don\'t do things the WordPress way! Therefore support is limited for the toolbar to <strong>general functionality only</strong>. For comprehensive support for your specific environment we recommend checking out the <a href="https://northernbeacheswebsites.com.au/custom-admin-interface-pro/" target="_blank">pro version</a> where we can get things working for your environment and provide a money-back guarantee.', 'wp-custom-admin-interface' ); ?></p>
             </div>    
             
         </td>

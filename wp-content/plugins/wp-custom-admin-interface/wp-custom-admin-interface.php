@@ -4,7 +4,7 @@
 *		Plugin Name: WP Custom Admin Interface
 *		Plugin URI: https://www.northernbeacheswebsites.com.au
 *		Description: Customise the WordPress admin and login interfaces and customize the WordPress dashboard menu.  
-*		Version: 7.20
+*		Version: 7.21
 *		Author: Martin Gibson
 *		Developer: Northern Beaches Websites
 *		Developer URI:  https://www.northernbeacheswebsites.com.au
@@ -127,7 +127,7 @@ function wp_custom_admin_interface_settings_page_content ($submenu) {
 
                 <p><h3><?php _e( 'A Message from the Developer', 'wp-custom-admin-interface' ); ?></h3><p><?php _e('Hi there! Thanks for using my plugin. I wrote this plugin because at the moment I use a few different little plugins to customise the admin interface and I thought it would be great to put it all into one and make things easy to use. I appreciate that customising the WordPress admin is a bit of a pandora\'s box as everyone has their own way they like to do things! If you like the plugin please consider rating it', 'wp-custom-admin-interface' ); ?> <a href="https://wordpress.org/support/plugin/wp-custom-admin-interface/reviews/?rate=5#new-post" target="_blank"><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i></a>'s.</p>
 
-                <p><strong><?php _e( 'Want to customise the WordPress admin interface more. Check out <a href="https://northernbeacheswebsites.com.au/custom-admin-interface-pro/">Custom Admin Interface Pro</a> to create multiple menus, toolbars, notices, admin/frontend code, dashboard widgets, hidden plugins, hidden metaboxes, hidden sidebars and hidden users and much more! Learn more <a href="https://northernbeacheswebsites.com.au/custom-admin-interface-pro/">here</a>.', 'wp-custom-admin-interface' ); ?></strong></p>
+                <p><strong><?php // _e( 'Want to customise the WordPress admin interface more. Check out <a href="https://northernbeacheswebsites.com.au/custom-admin-interface-pro/">Custom Admin Interface Pro</a> to create multiple menus, toolbars, notices, admin/frontend code, dashboard widgets, hidden plugins, hidden metaboxes, hidden sidebars and hidden users and much more! Learn more <a href="https://northernbeacheswebsites.com.au/custom-admin-interface-pro/">here</a>.', 'wp-custom-admin-interface' ); ?></strong></p>
 
             </div>
 

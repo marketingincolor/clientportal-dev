@@ -4,7 +4,7 @@ Donate link: https://northernbeacheswebsites.com.au/product/donate-to-northern-b
 Tags: admin, interface, menu, menu editor, customize, toolbar, login, admin logo, admin login logo, change login logo, custom admin logo, custom code, maintenance, color scheme, admin notice, hide plugins, hide users, hide sidebars, hide meta, hide meta boxes
 Requires at least: 3.0.1
 Tested up to: 5.3
-Stable tag: 7.20
+Stable tag: 7.21
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ With WP Custom Admin Interface you can easily customise the WordPress admin and 
 
 == Description ==
 
-With WP Custom Admin Interface you can easily customize the WordPress admin menu and toolbar and customize the admin and login interfaces. But we're just getting started! WP Custom Admin Interface provides a whole range of awesome admin features which other plugins will charge you for - this plugin is completely free, there's no 'pro' version.
+With WP Custom Admin Interface you can easily customize the WordPress admin menu and toolbar and customize the admin and login interfaces. But we're just getting started! WP Custom Admin Interface provides a whole range of awesome admin features which other plugins will charge you for - this plugin is completely free.
 
 WP Custom Admin Interface provides an awesome and simple interface to customize the backend of WordPress to provide a more customized experience for you and your clients or customers. WordPress administrators who manage multiple websites will appreciate the simple plugin settings export feature which will enable you to deploy customizations to multiple sites you manage.
 
@@ -115,6 +115,9 @@ Please use the support forum to raise any issues or questions.
 
 
 == Changelog ==
+
+= 7.21 =
+* Updating of support terms to deal with people who are ungrateful
 
 = 7.20 =
 * Improvements to reliability of import/export feature 
@@ -352,6 +355,9 @@ Please use the support forum to raise any issues or questions.
 * Initial launch of the plugin
 
 == Upgrade Notice ==
+
+= 7.21 =
+* Updating of support terms to deal with people who are ungrateful
 
 = 7.20 =
 * Improvements to reliability of import/export feature 

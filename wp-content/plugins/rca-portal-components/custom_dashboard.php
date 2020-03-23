@@ -26,9 +26,10 @@ printf( __( 'User first name: %s <br />', 'textdomain' ), esc_html( $current_use
 printf( __( 'User last name: %s <br />', 'textdomain' ), esc_html( $current_user->user_lastname ) );
 printf( __( 'User display name: %s <br />', 'textdomain' ), esc_html( $current_user->display_name ) );
 printf( __( 'User ID: %s <br />', 'textdomain' ), esc_html( $current_user->ID ) );
-$term = get_field( 'company_name', 'user_3' );
+$term = get_field( 'company_name', $user_metakey );
 if ( $term ):
 	printf( __( 'Company Name: %s <br />', 'textdomain' ), esc_html( $term->name ) );
+	printf( __( 'Slug: %s <br />', 'textdomain' ), esc_html( $term->slug ) );
 endif;
 ?>
 
@@ -64,6 +65,44 @@ endif;
 
 <?php if( !current_user_can('administrator') ) : ?>
 			<a class="button button-primary button-hero XXXload-customize XXXhide-if-no-customize" href="./edit.php?post_type=report"><?php _e( 'View Reports' ); ?></a>
+
+
+<?php
+// using category slug
+$args = array(  
+	'post_type' => 'report', 
+	'posts_per_page' => -1, 
+	'orderby' => 'date', 
+	'order' => 'DESC', 
+	'tax_query' => array(
+		array(
+			'taxonomy' => 'clients',
+			'field'    => 'slug', // term_id, slug  
+			'terms'    => $term->slug,
+		),
+	)
+);
+$loop = new WP_Query($args);
+
+if ( $loop->have_posts() ) {
+    echo '<ul>';
+    while ( $loop->have_posts() ) {
+        $loop->the_post();
+        echo '<li><a href="' . get_the_permalink() . '" >'  . get_the_title() . '</a></li>';
+    }
+    echo '</ul>';
+} else {
+    // no posts found
+}
+/* Restore original Post Data */
+wp_reset_postdata();
+
+?>
+
+
+
+
+
 <?php endif; ?>
 
 <?php if( current_user_can('administrator') ) : ?>
