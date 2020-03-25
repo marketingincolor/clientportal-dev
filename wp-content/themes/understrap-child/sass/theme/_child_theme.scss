@@ -1,21 +1,104 @@
-.navbar-brand { 
-	margin-right: auto; 
-	margin-left:auto; 
-}
+/* @import url('https://fonts.googleapis.com/css?family=Lora:400,500,600,700&display=swap'); */
 
-/*.report-template-default .site-main { margin: 1em 0em; }*/
+/* General Site Customizations */
 
-.single-report #main-nav { background-color:#fff!important; }
+.center-content { text-align:center; }
 
-.report-template-default  {  
-	.container-background { background-position:center; background-size:cover; }
-	.report-header, .next-steps { background-color:#c4612b; color:#fff; }
-	.paragraph-section { background-color:#F8F7F5; }
-	.bullet-list {background-color:#998F86;}
+/* Custom Report Layout */
+.report-template-default { 
+	h1, h2, h3, h4, h5, h6 { font-style:italic; }
+	#main-nav { 
+		background-color:#fff!important;
+		.navbar-brand { 
+			margin-right: auto; 
+			margin-left:auto; 
+		}
+	}
+	.container-background { 
+		padding:4em 0em;
+		background-position:center; 
+		background-size:cover; 
+	}
+	.report-header { 
+		background-color:#c4612b; color:#fff; 
+		.container {
+			.button { 
+				border:2px solid #fff; 
+				color:#fff; 
+				padding:.375em 2em; 
+				text-decoration:none; 
+			}
+		}
+	}
+
+	.nav-section { 
+		background-color:#fff; 
+		.container {
+			text-align: center;
+			.button { 
+				border:2px solid #c4612b; 
+				color:#000; 
+				padding:.375em 1em; 
+				text-decoration:none; 
+				display:inline-block;
+				width:inherit;
+			}
+		}
+	}
+
+	.next-steps { 
+		background-color:#c4612b; color:#fff; 
+	}
+
+	.paragraph-section {
+		background-color:#F8F7F5; 
+	}
+
+	.bullet-list {
+		background-color:#998F86;
+	}
+
 	.icon-list { 
 		background-color:#D7D2CC; 
 		list-style:none; 
-		.icon-item { display:inline-grid; }
+		.icon-title { 
+			width:100%; 
+			text-align:center; 
+		}
+		.icon-subheading { 
+			width:100%; 
+			text-align:center; 
+		}
+		.icon-item { 
+			display:inline-flex; 
+			margin: 1em 0em;
+			.icon-img {
+				font-size:4rem;
+				color:#968C83;
+			}
+			.icon-text {
+				font-style:initial; 
+				font-weight:unset;
+				font-family:'Roboto', sans-serif;
+				margin:auto;
+				padding-left:.75em;
+				color:#2b2b2b;
+			}
+		}
 	}
-	.time-budget { background-color:#1B3355; color:#fff; }
+
+	.time-budget {
+		background-color:#1B3355;
+		color:#fff; 
+		text-align:center;
+		.time-label { 
+			font-style:initial; 
+			font-weight:500;
+			font-family:inherit; 
+			color:#b6ada6;
+		}
+		.time-data { 
+			font-size:3em; 
+		}
+	}
 }
