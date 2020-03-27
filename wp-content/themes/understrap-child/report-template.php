@@ -43,7 +43,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 				<div class="row justify-content-center">
 					<div class="col-12 col-md-10">
 
-						<h2 class="center-content"><i><?php the_title(); ?></i></h2>
+						<h1 class="center-content"><i><?php the_title(); ?></i></h1>
 
 					<?php if( get_field('report_date') ): ?>
 					    <p class="center-content"><?php the_field('report_date'); ?></p>
@@ -68,7 +68,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 		<div class="container-background nav-section">
 			<div class="container">
 				<div class="row justify-content-center">
-					<div class="col-12 col-md-10">
+					<div class="col-12 col-md-12">
 						<h2 class="center-content">Click on a Report Item to Scroll to it</h2>
 
 
@@ -77,7 +77,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 						$value = get_field( 'report_content' );
 						foreach ($value as $section) {
 							//print_r($section);
-							echo '<div class="col-3"><a href="#' . preg_replace( "/\s+/", "_", $section['title'] ) . '" class="button">' . $section['title'] . '</a></div>';
+							echo '<div class="col-3 nav-item"><div class="button"><a href="#' . preg_replace( "/\s+/", "_", $section['title'] ) . '" class="button-link">' . $section['title'] . '</a></div></div>';
 						}
 						?>
 						</div>
@@ -107,23 +107,24 @@ if( have_rows('report_content') ):
         <?php // Case: Paragraph layout
         if( get_row_layout() == 'paragraph' ):
             $p_title = get_sub_field('title'); 
-            $p_bgnd = get_sub_field('background'); ?>
-		<div class="container-background paragraph-section" style="background-image: url(<?php echo $p_bgnd; ?>);"> 
+            $p_bgnd = get_sub_field('background');
+            $p_id = preg_replace( '/\s+/', '_', $p_title ); ?>
+		<div class="container-background paragraph-section" style="background-image: url(<?php echo $p_bgnd; ?>);" id="<?php echo $p_id; ?>"> 
 			<div class="container"> 
 				<div class="row justify-content-center">
 					<div class="col-12 col-md-10">
 
-						<h3 class="paragraph-title" id="<?php echo preg_replace( '/\s+/', '_', $p_title ) ?>"><?php echo $p_title; ?></h3>
+						<h3 class="paragraph-title"><?php echo $p_title; ?></h3>
 
 					<?php if( have_rows('content') ): ?>
 				    <?php while( have_rows('content') ): the_row(); ?>
 
 			        <?php if( get_row_layout() == 'subheading' ): ?>
-			            <h4 class="paragraph-subheading"><?php the_sub_field('subheading_content'); ?></h4>
+			            <h3 class="paragraph-subheading"><?php the_sub_field('subheading_content'); ?></h3>
 					<?php elseif( get_row_layout() == 'text' ): ?>
 			            <p class="paragraph-text"><?php the_sub_field('text_content'); ?></p>
 			        <?php elseif( get_row_layout() == 'image' ): ?>
-			            <span class="paragraph-image"><img src="<?php get_sub_field('image_content'); ?>"></span>
+			            <p class="paragraph-image"><img src="<?php the_sub_field('image_content'); ?>"></p>
 				    <?php endif; ?>
 
 				    <?php endwhile; ?>
@@ -138,27 +139,29 @@ if( have_rows('report_content') ):
         <?php // Case: Bullet List layout
         elseif( get_row_layout() == 'bullet_list' ):
             $b_title = get_sub_field('title'); 
-            $b_bgnd = get_sub_field('background');?>
-		<div class="container-background bullet-list" style="background-image: url(<?php echo $b_bgnd; ?>);"> 
+            $b_bgnd = get_sub_field('background');
+            $b_id = preg_replace( '/\s+/', '_', $b_title ); ?>
+		<div class="container-background bullet-list" style="background-image: url(<?php echo $b_bgnd; ?>);" id="<?php echo $b_id; ?>"> 
 			<div class="container"> 
 				<div class="row justify-content-center">
 					<div class="col-12 col-md-10">
 
-						<h3 class="bullet-title" id="<?php echo preg_replace( '/\s+/', '_', $b_title ) ?>"><?php echo $b_title; ?></h3>
+						<h3 class="bullet-title"><?php echo $b_title; ?></h3>
 
 					<?php if( have_rows('list') ): ?>
 				    <?php while( have_rows('list') ): the_row(); ?>
 
 			        <?php if( get_row_layout() == 'subheading' ): ?>
-			            <h4 class="bullet-subheading"><?php the_sub_field('subheading_bullet'); ?></h4>
+			            <p class="bullet-subheading"><?php the_sub_field('subheading_bullet'); ?></p>
 					<?php endif; ?>
 
 					<?php if( get_row_layout() == 'text' ): ?>
-			            <li class="bullet-text"><?php the_sub_field('text_bullet'); ?></li>
+			            <!-- <li class="bullet-text"><?php the_sub_field('text_bullet'); ?></li> -->
+			            <div class="bullet-text"><i class="fas fa-circle"></i><?php the_sub_field('text_bullet'); ?></div>
 					<?php endif; ?>
 
 			        <?php if( get_row_layout() == 'image' ): ?>
-			            <span class="bullet-image"><img src="<?php get_sub_field('image_bullet'); ?>"></span>
+			            <span class="bullet-image"><img src="<?php the_sub_field('image_bullet'); ?>"></span>
 				    <?php endif; ?>
 
 				    <?php endwhile; ?>
@@ -176,38 +179,40 @@ if( have_rows('report_content') ):
         <?php // Case: Icon List Layout
         elseif( get_row_layout() == 'icon_list' ):
             $i_title = get_sub_field('title'); 
-            $i_bgnd = get_sub_field('background');?>
-		<div class="container-background icon-list" style="background-image: url(<?php echo $i_bgnd; ?>);"> 
+            $i_bgnd = get_sub_field('background');
+            $i_id = preg_replace( '/\s+/', '_', $i_title ); ?>
+		<div class="container-background icon-list" style="background-image: url(<?php echo $i_bgnd; ?>);" id="<?php echo $i_id; ?>"> 
 			<div class="container">
 				<div class="row justify-content-center"> 
-					<div class="col-12 col-md-10">
+					<div class="col-12 col-md-12">
 						<div class="row justify-content-center">
-						<h3 class="icon-title" id="<?php echo preg_replace( '/\s+/', '_', $i_title ) ?>"><?php echo $i_title; ?></h3>
+						<h3 class="icon-title"><?php echo $i_title; ?></h3>
 
-			<?php if( have_rows('icon_section') ): ?>
-			<?php while( have_rows('icon_section') ): the_row(); ?>
+				<?php if( have_rows('icon_section') ): ?>
+				<?php while( have_rows('icon_section') ): the_row(); ?>
 
-		        <?php if( get_row_layout() == 'subheading' ): ?>
-		        	<div class="col-12 col-md-10">
-		            	<h4 class="icon-subheading"><?php the_sub_field('subheading_list'); ?></h4>
-		            </div>
+			        <?php if( get_row_layout() == 'subheading' ): ?>
+			        	<div class="col-12 col-md-10">
+			            	<h3 class="icon-subheading"><?php the_sub_field('subheading_list'); ?></h3>
+			            </div>
+					<?php endif; ?>
+
+					<?php if( get_row_layout() == 'icon' ): ?>
+		            	<div class="icon-item col-6">
+		            		<span class="icon-img"><?php //echo get_sub_field('icon_image'); ?></span>
+		            		<span class="icon-img"><?php $icon = get_sub_field('icon_image'); echo $icon->element; ?></span>
+		            		<h5 class="icon-text"><?php echo get_sub_field('icon_text'); ?></h5>
+		            	</div>
+					<?php endif; ?>
+
+			        <?php if( get_row_layout() == 'image' ): ?>
+			        	<div class="col-12 col-md-10">
+			            	<span class="bullet-image"><img src="<?php the_sub_field('image_list'); ?>"></span>
+			            </div>
+				    <?php endif; ?>
+
+				<?php endwhile; ?>
 				<?php endif; ?>
-
-				<?php if( get_row_layout() == 'icon' ): ?>
-	            	<div class="icon-item col-4">
-	            		<span class="icon-img"><?php echo get_sub_field('icon_image'); ?></span>
-	            		<h5 class="icon-text"><?php echo get_sub_field('icon_text'); ?></h5>
-	            	</div>
-				<?php endif; ?>
-
-		        <?php if( get_row_layout() == 'image' ): ?>
-		        	<div class="col-12 col-md-10">
-		            	<span class="bullet-image"><img src="<?php get_sub_field('image_list'); ?>"></span>
-		            </div>
-			    <?php endif; ?>
-
-			<?php endwhile; ?>
-			<?php endif; ?>
 
 						</div>
 					</div>
@@ -228,12 +233,13 @@ if( have_rows('report_content') ):
             $t_total = get_sub_field('total_hours');
             $t_used = get_sub_field('hours_used');
             $t_remaining = get_sub_field('hours_remaining');
-            $t_bgnd = get_sub_field('background'); ?>
-		<div class="container-background time-budget" style="background-image: url(<?php echo $t_bgnd; ?>);"> 
+            $t_bgnd = get_sub_field('background');
+            $t_id = preg_replace( '/\s+/', '_', $t_title ); ?>
+		<div class="container-background time-budget" style="background-image: url(<?php echo $t_bgnd; ?>);" id="<?php echo $t_id; ?>"> 
 			<div class="container"> 
 				<div class="row justify-content-center">
-					<div class="col-12 col-md-10">
-						<h3 class="budget-title" id="<?php echo preg_replace( '/\s+/', '_', $t_title ) ?>"><?php echo $t_title; ?></h3>
+					<div class="col-12 col-md-6">
+						<h3 class="budget-title"><?php echo $t_title; ?></h3>
 					<?php if( $t_budget ): ?>
 						<p><?php echo $t_budget; ?></p>
 					<?php endif; ?>
@@ -267,9 +273,9 @@ endif;
 		<div class="container-background next-steps" style="background-image: url(<?php echo $ns_bgnd; ?>);"> 
 			<div class="container"> 
 				<div class="row justify-content-center">
-					<div class="col-12 col-md-10">
+					<div class="col-12 col-md-6">
 					<?php if( have_rows('next_steps') ): ?>
-						<h3 class="steps-title">Next Steps</h3>
+						<h1 class="steps-title">Next Steps</h1>
 						<ol class="next-steps-list">
 						<?php while( have_rows('next_steps') ): the_row(); 
 							$step_text = get_sub_field('step'); ?>
