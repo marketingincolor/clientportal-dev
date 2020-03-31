@@ -56,7 +56,10 @@ $container = get_theme_mod( 'understrap_container_type' );
 						<?php endif; ?>
 
 					<?php } else {
-						the_custom_logo();
+						//the_custom_logo();
+						$custom_logo_id = get_theme_mod( 'custom_logo' );
+						$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+						echo '<span class="navbar-brand custom-logo-link"><img src="' . $image[0] . '"></span>';
 					} ?><!-- end custom logo -->
 
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation', 'understrap' ); ?>">

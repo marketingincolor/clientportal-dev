@@ -18,12 +18,12 @@ $user_metakey = 'user_' . $current_user->ID;
  *     return;
  * }
  */
-printf( __( 'Username: %s <br />', 'textdomain' ), esc_html( $current_user->user_login ) );
-printf( __( 'User email: %s <br />', 'textdomain' ), esc_html( $current_user->user_email ) );
-printf( __( 'User first name: %s <br />', 'textdomain' ), esc_html( $current_user->user_firstname ) );
-printf( __( 'User last name: %s <br />', 'textdomain' ), esc_html( $current_user->user_lastname ) );
-printf( __( 'User display name: %s <br />', 'textdomain' ), esc_html( $current_user->display_name ) );
-printf( __( 'User ID: %s <br />', 'textdomain' ), esc_html( $current_user->ID ) );
+//printf( __( 'Username: %s <br />', 'textdomain' ), esc_html( $current_user->user_login ) );
+//printf( __( 'User email: %s <br />', 'textdomain' ), esc_html( $current_user->user_email ) );
+//printf( __( 'User first name: %s <br />', 'textdomain' ), esc_html( $current_user->user_firstname ) );
+//printf( __( 'User last name: %s <br />', 'textdomain' ), esc_html( $current_user->user_lastname ) );
+//printf( __( 'User display name: %s <br />', 'textdomain' ), esc_html( $current_user->display_name ) );
+//printf( __( 'User ID: %s <br />', 'textdomain' ), esc_html( $current_user->ID ) );
 
 if ( !empty( $current_user->roles ) && is_array( $current_user->roles ) ) {
 	$roles = array();
@@ -33,16 +33,16 @@ if ( !empty( $current_user->roles ) && is_array( $current_user->roles ) ) {
 }
 
 if ( in_array('editor', $roles) || in_array('administrator', $roles) ) {
-	print('Staff<br />'); // is Staff Member
+	//print('Staff<br />'); // is Staff Member
 }
 if ( in_array('subscriber', $roles) ) {
-	print('Client<br />'); // is Client
+	//print('Client<br />'); // is Client
 }
 
 $term = get_field( 'company_name', $user_metakey );
 if ( $term ):
-	printf( __( 'Company Name: %s <br />', 'textdomain' ), esc_html( $term->name ) );
-	printf( __( 'Slug: %s <br />', 'textdomain' ), esc_html( $term->slug ) );
+	//printf( __( 'Company Name: %s <br />', 'textdomain' ), esc_html( $term->name ) );
+	//printf( __( 'Slug: %s <br />', 'textdomain' ), esc_html( $term->slug ) );
 endif;
 ?>
 
@@ -100,6 +100,7 @@ if( current_user_can('editor') || current_user_can('administrator') ) {
 $args = array(  
 	'post_type' => 'report', 
 	'posts_per_page' => -1, 
+	'post_status' => 'publish',
 	'orderby' => 'date', 
 	'order' => 'DESC', 
 	'tax_query' => array(
@@ -113,6 +114,7 @@ $args = array(
 $loop = new WP_Query($args);
 
 if ( $loop->have_posts() ) {
+	echo '<h4>Current Reports:</h4>';
     echo '<ul>';
     while ( $loop->have_posts() ) {
         $loop->the_post();
