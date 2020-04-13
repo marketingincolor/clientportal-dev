@@ -53,8 +53,19 @@ function portal_admin_customizations() {
 // customize admin bar css
 function override_admin_bar_css() { 
 	if ( is_admin_bar_showing() && !current_user_can('administrator') ) {
-	echo ' <style type="text/css"> #wpadminbar { background:#c4612b; } #wpcontent {max-width:960px; margin-left:auto; margin-right:auto;
-	}</style>';
+	/*echo ' <style type="text/css"> #wpadminbar { background:#c4612b; } #wpcontent {max-width:960px; margin-left:auto; margin-right:auto;
+	}</style>';*/
+	echo ' <style type="text/css"> 
+	#wpadminbar { background:#fff; } 
+	#wpadminbar .ab-item, #wpadminbar a.ab-item {color:#666; }
+	#wpadminbar .quicklinks .menupop ul li a, #wpadminbar .quicklinks .menupop ul li a strong, #wpadminbar .quicklinks .menupop.hover ul li a, #wpadminbar.nojs .quicklinks .menupop:hover ul li a {color:#666; }
+	#wpadminbar:not(.mobile) .ab-top-menu > li:hover > .ab-item { background:#eee; color:#c4612b; }
+	#wpadminbar .quicklinks .menupop ul li a:hover { color:#c4612b !important; }
+	#wpadminbar .ab-top-menu > li.hover > .ab-item, #wpadminbar.nojq .quicklinks .ab-top-menu > li > .ab-item:focus, #wpadminbar:not(.mobile) .ab-top-menu > li:hover > .ab-item, #wpadminbar:not(.mobile) .ab-top-menu > li > .ab-item:focus { background:#eee; color:#c4612b; }
+	#wpadminbar .menupop .ab-sub-wrapper, #wpadminbar .shortlink-input { box-shadow:none; background:#eee; }
+	#wpcontent {max-width:960px; margin-left:auto; margin-right:auto; }
+
+	</style>';
     }
 }
 
@@ -84,41 +95,15 @@ add_filter('acf/fields/flexible_content/layout_title', function($title) {
 // Custom CSS Injection for ACF Flexible Content Edits
 add_action('acf/input/admin_head', 'my_acf_admin_head');
 function my_acf_admin_head() {
-?>
-<style type="text/css">
-
-    .acf-flexible-content .layout .acf-fc-layout-handle {
-        /*background-color: #00B8E4;*/
-        background-color: #202428;
-        color: #eee;
-    }
-
+echo '<style type="text/css">
+    .acf-flexible-content .layout .acf-fc-layout-handle { background-color: #202428; color: #eee; }
     .acf-repeater.-row > table > tbody > tr > td,
-    .acf-repeater.-block > table > tbody > tr > td {
-        border-top: 2px solid #202428;
-    }
-
-    .acf-repeater .acf-row-handle {
-        vertical-align: top !important;
-        padding-top: 16px;
-    }
-
-    .acf-repeater .acf-row-handle span {
-        font-size: 20px;
-        font-weight: bold;
-        color: #202428;
-    }
-
-    .imageUpload img {
-        width: 75px;
-    }
-
-    .acf-repeater .acf-row-handle .acf-icon.-minus {
-        top: 30px;
-    }
-
-</style>
-<?php
+    .acf-repeater.-block > table > tbody > tr > td { border-top: 2px solid #202428; }
+    .acf-repeater .acf-row-handle { vertical-align: top !important; padding-top: 16px; }
+    .acf-repeater .acf-row-handle span { font-size: 20px; font-weight: bold; color: #202428; }
+    .imageUpload img { width: 75px; }
+    .acf-repeater .acf-row-handle .acf-icon.-minus { top: 30px; }
+</style>';
 }
 
 
@@ -393,3 +378,94 @@ function portal_one_column_for_all( $order )
         'advanced' => '',
     );
 }
+
+
+
+
+
+
+        add_shortcode('user_posts', 'list_user_posts');
+        function list_user_posts($attr = array(), $content = null)
+        {
+            extract(shortcode_atts(array(
+                    'post_type' => 'post',
+                    'number' => 10,
+                ), $attr));
+
+            //if the user is not logged in the give him a link to log in
+            if (!is_user_logged_in()){
+                return sprintf(__('You Need to <a href="%s">Login</a> to see your posts'),wp_login_url(get_permalink()));
+            }
+            //this is for pagination
+            $pagenum = isset( $_GET['pagenum'] ) ? intval( $_GET['pagenum'] ) : 1;
+
+            //get user's posts
+            $args = array(
+                'author' => get_current_user_id(), //this makes the query pull post form the current user only
+                'post_status' => array('draft', 'future', 'pending', 'publish'),
+                'post_type' => $post_type,
+                'posts_per_page' => $number,
+                'paged' => $pagenum
+            );
+            $user_posts = new WP_Query( $args );
+
+            $retVal = '';
+            if ( $user_posts->have_posts() ) {
+
+                //set table headers
+                $retVal = '
+                    <table class="user-posts-table wp-list-table widefat fixed striped report" cellpadding="0" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>'.__( 'Title', 'lup' ).'</th>
+                                <th>'.__( 'Status', 'lup' ).'</th>
+                                <th>'.__( 'Actions', 'lup' ).'</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+                //loop over and add each post to the table
+                global $post;
+                $temp = $post;
+                while ($user_posts->have_posts()){
+                    $user_posts->the_post();
+                    $title = $post->post_title;
+                    $link = '<a href="'.get_permalink().'" title="'.sprintf( esc_attr__( 'Permalink to %s', 'lup' ), the_title_attribute( 'echo=0' ) ).'" rel="bookmark">'.$title.'</a>';
+                    $retVal .= 
+                            '<tr>
+                                <td>
+                                    '.( in_array( $post->post_status, array('draft', 'future', 'pending') ) ? $title : $link).'
+                                </td>
+                                <td>
+                                    '.$post->post_status .'
+                                </td>
+                                <td>
+                                    <a href="./post.php?action=edit&post='.$post->ID.'"><span style="color: green;">'. __( 'Edit', 'lup' ).'</span></a>
+                                    <!--<a href="./post.php?action=trash&post='.$post->ID.'"><span style="color: red;">'.__( 'Delete', 'lup' ).'</span></a>-->
+                                </td>
+                            </tr>';
+                }
+                $retVal .= '</tbody></table>';
+
+                //create pagination (if needed)
+                if ($user_posts->found_posts > $number ){
+                    $pagination = paginate_links( array(
+                        'base' => add_query_arg( 'pagenum', '%#%' ),
+                        'format' => '',
+                        'prev_text' => __( '&laquo;', 'lup' ),
+                        'next_text' => __( '&raquo;', 'lup' ),
+                        'total' => $user_posts->max_num_pages,
+                        'current' => $pagenum
+                        ) 
+                    );
+                    if ( $pagination ) {
+                        $retVal .= '<div class="pagination">'.$pagination .'</div>';
+                    }
+                }
+                //return table of posts
+                return $retVal;
+            }else{
+                //  no posts for this users found
+                return  __("No Posts Found");
+            }
+        }
+

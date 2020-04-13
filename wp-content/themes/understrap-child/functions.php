@@ -31,3 +31,12 @@ function add_child_theme_textdomain() {
     load_child_theme_textdomain( 'understrap-child', get_stylesheet_directory() . '/languages' );
 }
 add_action( 'after_setup_theme', 'add_child_theme_textdomain' );
+
+//Change Howdy Text
+add_filter('admin_bar_menu','change_howdy_text_toolbar');
+function change_howdy_text_toolbar($wp_admin_bar)
+{
+    $getgreetings = $wp_admin_bar->get_node('my-account');
+    $rpctitle = str_replace('Howdy,','Welcome,',$getgreetings->title);
+    $wp_admin_bar->add_node(array("id"=>"my-account","title"=>$rpctitle));
+}

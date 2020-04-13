@@ -69,6 +69,9 @@ if( current_user_can('editor') || current_user_can('administrator') ) {
 ?>
 
 
+	<div id="main-nav" class="container" style="text-align:center; margin-top:1em;">
+		<?php the_custom_logo(); ?>
+	</div>
 
 <div class="wrap about-wrap">
 
@@ -131,9 +134,14 @@ wp_reset_postdata();?>
 <?php endif; ?>
 
 <?php if( current_user_can('editor') || current_user_can('administrator') ) : ?>
-	<a class="button button-primary button-hero XXXload-customize XXXhide-if-no-customize" href="./edit.php?post_type=report"><?php _e( 'Manage Client Reports' ); ?></a>
-<?php endif; ?>
+	<!-- <a class="button button-primary button-hero XXXload-customize XXXhide-if-no-customize" href="./edit.php?post_type=report"><?php _e( 'Manage Client Reports' ); ?></a> -->
 
+
+<h1 class="wp-heading-inline">Edit Reports</h1>
+<a href="http://localhost/clientportal-dev/wp-admin/post-new.php?post_type=report" class="page-title-action">Add New</a>
+<?php echo do_shortcode('[user_posts post_type="report" number="5"]'); ?>
+
+<?php endif; ?>
 
 		</div>
 	</div>
