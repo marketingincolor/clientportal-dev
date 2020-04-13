@@ -11382,7 +11382,7 @@ a.skip-link {
 
 /* Custom Report Layout */
 .report-template-default h1, .report-template-default h2, .report-template-default h3, .report-template-default h4, .report-template-default h5, .report-template-default h6 {
-  font-style: italic; }
+  font-style: initial; }
 
 .report-template-default h1 {
   font-size: 48px;
@@ -11405,6 +11405,9 @@ a.skip-link {
 .report-template-default h6 {
   font-size: inherit; }
 
+.report-template-default img {
+  padding-top: 1em; }
+
 .report-template-default #wrapper-navbar {
   margin: 2em 0em; }
 
@@ -11418,7 +11421,7 @@ a.skip-link {
     margin-left: auto; }
 
 .report-template-default .container-background {
-  padding: 4em 0em;
+  padding: 6em 0em;
   background-position: center;
   background-size: cover; }
 
@@ -11434,7 +11437,8 @@ a.skip-link {
       border: 2px solid #fff;
       color: #fff;
       padding: .375em 2em;
-      text-decoration: none; }
+      text-decoration: none;
+      font-weight: 500; }
 
 .report-template-default .nav-section {
   background-color: #fff; }
@@ -11455,7 +11459,8 @@ a.skip-link {
           display: inline-block;
           height: 100%;
           width: 100%;
-          line-height: 1.2; }
+          line-height: 1.2;
+          font-weight: 500; }
 
 .report-template-default .next-steps {
   background-color: #c4612b;
@@ -11477,7 +11482,7 @@ a.skip-link {
     margin: 1rem 0rem; }
   .report-template-default .bullet-list .bullet-text {
     position: relative;
-    padding: 1em 0em; }
+    padding: .5em 0em 0em 0em; }
     .report-template-default .bullet-list .bullet-text i {
       font-size: .375em;
       vertical-align: middle;
@@ -11498,11 +11503,11 @@ a.skip-link {
     display: inline-flex;
     margin: 1em 0em; }
     .report-template-default .icon-list .icon-item .icon-img {
-      font-size: 4rem;
+      font-size: 3rem;
       color: #968C83; }
     .report-template-default .icon-list .icon-item .icon-text {
       font-style: initial;
-      font-weight: unset;
+      font-weight: 500;
       font-family: 'Roboto', sans-serif;
       margin: auto;
       padding-left: .75em;
@@ -11512,12 +11517,48 @@ a.skip-link {
   background-color: #1A3254;
   color: #fff;
   text-align: center; }
+  .report-template-default .time-budget p {
+    margin-bottom: 2rem; }
   .report-template-default .time-budget .time-label {
     font-style: initial;
     font-weight: 500;
     font-family: inherit;
     color: #b6ada6; }
   .report-template-default .time-budget .time-data {
-    font-size: 3em; }
+    font-size: 3em;
+    margin-bottom: 1rem;
+    font-weight: 500; }
+
+.report-template-default .next-steps ol {
+  counter-reset: stepcount;
+  list-style: none;
+  padding-left: 40px; }
+  .report-template-default .next-steps ol li {
+    margin: 1rem 0rem;
+    counter-increment: stepcount;
+    position: relative;
+    line-height: 4rem;
+    min-height: 4rem; }
+    .report-template-default .next-steps ol li:before {
+      content: counter(stepcount);
+      color: #fff;
+      font-size: 2.5rem;
+      font-weight: 700;
+      position: absolute;
+      --size: 4rem;
+      left: calc(-1 * var(--size) - 10px);
+      line-height: calc(var(--size) - 5px);
+      width: var(--size);
+      height: var(--size);
+      top: 0;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      text-align: center; }
+    .report-template-default .next-steps ol li p {
+      margin: 0;
+      line-height: 2em;
+      display: inline-block;
+      font-size: 1.45rem;
+      font-weight: 500; }
 
 /*# sourceMappingURL=child-theme.css.map */

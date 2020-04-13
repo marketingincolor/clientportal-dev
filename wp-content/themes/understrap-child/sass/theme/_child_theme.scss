@@ -6,13 +6,14 @@
 
 /* Custom Report Layout */
 .report-template-default { 
-	h1, h2, h3, h4, h5, h6 { font-style:italic; }
+	h1, h2, h3, h4, h5, h6 { font-style:initial; }
 	h1 { font-size:48px; margin-bottom:1.5rem; }
 	h2 { font-size:36px; margin-bottom:1.2rem; }
 	h3 { font-size:32px; margin-bottom:1rem; }
 	h4 { font-size:inherit; }
 	h5 { font-size:inherit; }
 	h6 { font-size:inherit; }
+	img { padding-top:1em; }
 	#wrapper-navbar { margin:2em 0em; }
 	.wrapper { padding:unset; }
 	#main-nav { 
@@ -23,7 +24,7 @@
 		}
 	}
 	.container-background { 
-		padding:4em 0em;
+		padding:6em 0em;
 		background-position:center; 
 		background-size:cover; 
 	}
@@ -40,6 +41,7 @@
 				color:#fff; 
 				padding:.375em 2em; 
 				text-decoration:none; 
+				font-weight:500;
 			}
 		}
 	}
@@ -64,6 +66,7 @@
 						height:100%;
 						width:100%;
 						line-height:1.2;
+						font-weight:500;
 					}
 				}
 			}
@@ -93,7 +96,7 @@
 		.bullet-subheading { margin:1rem 0rem; }
 		.bullet-text {
 			position:relative;
-			padding:1em 0em;
+			padding:.5em 0em 0em 0em;
 			i {
 				font-size:.375em;
 				vertical-align: middle;
@@ -117,12 +120,12 @@
 			display:inline-flex; 
 			margin: 1em 0em;
 			.icon-img {
-				font-size:4rem;
+				font-size:3rem;
 				color:#968C83;
 			}
 			.icon-text {
 				font-style:initial; 
-				font-weight:unset;
+				font-weight:500;
 				font-family:'Roboto', sans-serif;
 				margin:auto;
 				padding-left:.75em;
@@ -135,6 +138,7 @@
 		background-color:#1A3254;
 		color:#fff; 
 		text-align:center;
+		p { margin-bottom:2rem; }
 		.time-label { 
 			font-style:initial; 
 			font-weight:500;
@@ -143,6 +147,47 @@
 		}
 		.time-data { 
 			font-size:3em;
+			margin-bottom:1rem;
+			font-weight:500;
+		}
+	}
+
+	.next-steps {
+		ol {
+			counter-reset:stepcount;
+			list-style:none;
+			padding-left:40px;
+			li {
+				margin: 1rem 0rem;
+				counter-increment:stepcount;
+				position:relative;
+				line-height:4rem;
+				min-height:4rem;
+				&:before {
+					content: counter(stepcount);
+					color: #fff;
+					font-size: 2.5rem;
+					font-weight: 700;
+					position: absolute;
+					--size: 4rem;
+					left: calc(-1 * var(--size) - 10px);
+					line-height: calc(var(--size) - 5px);
+					width: var(--size);
+					height: var(--size);
+					top: 0;
+					border: 2px solid #fff;
+					border-radius: 50%;
+					text-align: center;
+				}
+				p { 
+					margin:0; 
+					line-height:2em;
+					display:inline-block;
+					font-size:1.45rem;
+					font-weight:500;
+				}
+			}
+
 		}
 	}
 }

@@ -43,7 +43,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 				<div class="row justify-content-center">
 					<div class="col-12 col-md-10">
 
-						<h1 class="center-content"><i><?php the_title(); ?></i></h1>
+						<h1 class="center-content"><?php the_title(); ?></h1>
 
 					<?php if( get_field('report_date') ): ?>
 					    <p class="center-content"><?php the_field('report_date'); ?></p>
