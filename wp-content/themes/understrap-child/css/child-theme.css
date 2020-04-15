@@ -11387,6 +11387,9 @@ a.skip-link {
 .report-template-default h1 {
   font-size: 48px;
   margin-bottom: 1.5rem; }
+  @media (max-width: 767.98px) {
+    .report-template-default h1 {
+      font-size: 42px; } }
 
 .report-template-default h2 {
   font-size: 36px;
@@ -11405,8 +11408,17 @@ a.skip-link {
 .report-template-default h6 {
   font-size: inherit; }
 
-.report-template-default img {
-  padding-top: 1em; }
+.report-template-default .custom-logo-link {
+  text-align: center; }
+  .report-template-default .custom-logo-link img {
+    max-width: 70%; }
+    @media (min-width: 768px) {
+      .report-template-default .custom-logo-link img {
+        max-width: 100%;
+        padding-top: 1em; } }
+
+.report-template-default .navbar-toggler {
+  display: none; }
 
 .report-template-default #wrapper-navbar {
   margin: 2em 0em; }
@@ -11433,6 +11445,10 @@ a.skip-link {
     .report-template-default .report-header .container p {
       font-size: 22px;
       margin-bottom: 3rem; }
+      @media (max-width: 767.98px) {
+        .report-template-default .report-header .container p {
+          font-size: 20px;
+          margin: 20px; } }
     .report-template-default .report-header .container .button {
       border: 2px solid #fff;
       color: #fff;
@@ -11474,19 +11490,29 @@ a.skip-link {
   .report-template-default .paragraph-section .paragraph-image {
     width: 100%;
     text-align: center; }
+  @media (max-width: 767.98px) {
+    .report-template-default .paragraph-section .paragraph-title {
+      text-align: center; } }
+  @media (max-width: 767.98px) {
+    .report-template-default .paragraph-section .paragraph-text {
+      text-align: center; } }
+  @media (max-width: 767.98px) {
+    .report-template-default .paragraph-section .paragraph-subheading {
+      text-align: center; } }
 
 .report-template-default .bullet-list {
   background-color: #998F86;
   color: #fff; }
+  @media (max-width: 767.98px) {
+    .report-template-default .bullet-list .bullet-title {
+      text-align: center; } }
   .report-template-default .bullet-list .bullet-subheading {
     margin: 1rem 0rem; }
   .report-template-default .bullet-list .bullet-text {
     position: relative;
-    padding: .5em 0em 0em 0em; }
-    .report-template-default .bullet-list .bullet-text i {
-      font-size: .375em;
-      vertical-align: middle;
-      padding: 0em 3em; }
+    padding: .5em 0em 0em 0em;
+    display: list-item;
+    margin-left: 2rem; }
 
 .report-template-default .icon-list {
   background-color: #D7D2CC;
@@ -11502,6 +11528,10 @@ a.skip-link {
     display: -ms-inline-flexbox;
     display: inline-flex;
     margin: 1em 0em; }
+    @media (max-width: 767.98px) {
+      .report-template-default .icon-list .icon-item {
+        display: block;
+        text-align: center; } }
     .report-template-default .icon-list .icon-item .icon-img {
       font-size: 3rem;
       color: #968C83; }
@@ -11533,12 +11563,18 @@ a.skip-link {
   counter-reset: stepcount;
   list-style: none;
   padding-left: 40px; }
+  @media (max-width: 767.98px) {
+    .report-template-default .next-steps ol {
+      padding-left: 80px; } }
   .report-template-default .next-steps ol li {
     margin: 1rem 0rem;
     counter-increment: stepcount;
     position: relative;
     line-height: 4rem;
     min-height: 4rem; }
+    @media (max-width: 767.98px) {
+      .report-template-default .next-steps ol li {
+        margin: 2rem 0rem; } }
     .report-template-default .next-steps ol li:before {
       content: counter(stepcount);
       color: #fff;
@@ -11560,5 +11596,8 @@ a.skip-link {
       display: inline-block;
       font-size: 1.45rem;
       font-weight: 500; }
+      @media (max-width: 767.98px) {
+        .report-template-default .next-steps ol li p {
+          line-height: 1em; } }
 
 /*# sourceMappingURL=child-theme.css.map */

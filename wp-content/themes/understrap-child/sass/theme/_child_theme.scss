@@ -7,13 +7,25 @@
 /* Custom Report Layout */
 .report-template-default { 
 	h1, h2, h3, h4, h5, h6 { font-style:initial; }
-	h1 { font-size:48px; margin-bottom:1.5rem; }
+	h1 { 
+		font-size:48px; 
+		margin-bottom:1.5rem; 
+		@include media-breakpoint-down(sm) { font-size:42px;  }
+	}
 	h2 { font-size:36px; margin-bottom:1.2rem; }
 	h3 { font-size:32px; margin-bottom:1rem; }
 	h4 { font-size:inherit; }
 	h5 { font-size:inherit; }
 	h6 { font-size:inherit; }
-	img { padding-top:1em; }
+
+	.custom-logo-link {
+		text-align:center;
+		img { 
+			@include media-breakpoint-up(xs) { max-width:70%; }
+			@include media-breakpoint-up(md) { max-width:100%; padding-top:1em;  }
+		}
+	}
+	.navbar-toggler { display:none; }
 	#wrapper-navbar { margin:2em 0em; }
 	.wrapper { padding:unset; }
 	#main-nav { 
@@ -35,6 +47,7 @@
 			p { 
 				font-size:22px;
 				margin-bottom:3rem; 
+				@include media-breakpoint-down(sm) { font-size:20px; margin:20px;  }
 			}
 			.button { 
 				border:2px solid #fff; 
@@ -88,20 +101,29 @@
 			width:100%;
 			text-align:center;
 		}
+		.paragraph-title {
+			@include media-breakpoint-down(sm) { text-align:center;  }
+		}
+		.paragraph-text {
+			@include media-breakpoint-down(sm) { text-align:center;  }
+		}
+		.paragraph-subheading {
+			@include media-breakpoint-down(sm) { text-align:center;  }
+		}
 	}
 
 	.bullet-list {
 		background-color:#998F86;
 		color:#fff;
+		.bullet-title {
+			@include media-breakpoint-down(sm) { text-align:center;  }
+		}
 		.bullet-subheading { margin:1rem 0rem; }
 		.bullet-text {
 			position:relative;
 			padding:.5em 0em 0em 0em;
-			i {
-				font-size:.375em;
-				vertical-align: middle;
-				padding:0em 3em;
-			}
+			display:list-item;
+			margin-left:2rem;
 		}
 	}
 
@@ -119,6 +141,7 @@
 		.icon-item { 
 			display:inline-flex; 
 			margin: 1em 0em;
+			@include media-breakpoint-down(sm) { display:block; text-align:center;  }
 			.icon-img {
 				font-size:3rem;
 				color:#968C83;
@@ -157,12 +180,14 @@
 			counter-reset:stepcount;
 			list-style:none;
 			padding-left:40px;
+			@include media-breakpoint-down(sm) { padding-left:80px; }
 			li {
 				margin: 1rem 0rem;
 				counter-increment:stepcount;
 				position:relative;
 				line-height:4rem;
 				min-height:4rem;
+				@include media-breakpoint-down(sm) { margin: 2rem 0rem; }
 				&:before {
 					content: counter(stepcount);
 					color: #fff;
@@ -185,6 +210,7 @@
 					display:inline-block;
 					font-size:1.45rem;
 					font-weight:500;
+					@include media-breakpoint-down(sm) { line-height:1em; }
 				}
 			}
 

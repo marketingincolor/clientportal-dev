@@ -41,7 +41,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 		<div class="container-background report-header" style="background-image: url(<?php echo $sum_bgnd; ?>);">
 			<div class="container">
 				<div class="row justify-content-center">
-					<div class="col-12 col-md-10">
+					<div class="col-11 col-md-10">
 
 						<h1 class="center-content"><?php the_title(); ?></h1>
 
@@ -56,7 +56,10 @@ $container = get_theme_mod( 'understrap_container_type' );
 					<?php //if(function_exists('mpdf_pdfbutton')) mpdf_pdfbutton(); ?>
 					<?php //if(function_exists('mpdf_pdfbutton')) mpdf_pdfbutton(false, 'Download Report in PDF Format', 'my login text'); ?>
 						<div class="center-content">
-							<a href="<?php the_permalink();?>?output=pdf" class="button">Download Report in PDF Format</a>
+							<a href="<?php the_permalink();?>?output=pdf" class="button">
+							<span class="d-md-none">Download Report PDF</span>
+							<span class="d-none d-md-inline">Download Report in PDF Format</span>
+							</a>
 						</div>
 
 					</div>
@@ -68,7 +71,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 		<div class="container-background nav-section">
 			<div class="container">
 				<div class="row justify-content-center">
-					<div class="col-12 col-md-12">
+					<div class="col-11 col-md-12">
 						<h2 class="center-content">Click on a Report Item to Scroll to it</h2>
 
 
@@ -77,7 +80,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 						$value = get_field( 'report_content' );
 						foreach ($value as $section) {
 							//print_r($section);
-							echo '<div class="col-3 nav-item"><div class="button"><a href="#' . preg_replace( "/\s+/", "_", $section['title'] ) . '" class="button-link">' . $section['title'] . '</a></div></div>';
+							echo '<div class="col-12 col-md-3 nav-item"><div class="button"><a href="#' . preg_replace( "/\s+/", "_", $section['title'] ) . '" class="button-link">' . $section['title'] . '</a></div></div>';
 						}
 						?>
 						</div>
@@ -112,7 +115,7 @@ if( have_rows('report_content') ):
 		<div class="container-background paragraph-section" style="background-image: url(<?php echo $p_bgnd; ?>);" id="<?php echo $p_id; ?>"> 
 			<div class="container"> 
 				<div class="row justify-content-center">
-					<div class="col-12 col-md-10">
+					<div class="col-11 col-md-10">
 
 						<h3 class="paragraph-title"><?php echo $p_title; ?></h3>
 
@@ -144,7 +147,7 @@ if( have_rows('report_content') ):
 		<div class="container-background bullet-list" style="background-image: url(<?php echo $b_bgnd; ?>);" id="<?php echo $b_id; ?>"> 
 			<div class="container"> 
 				<div class="row justify-content-center">
-					<div class="col-12 col-md-10">
+					<div class="col-11 col-md-10">
 
 						<h3 class="bullet-title"><?php echo $b_title; ?></h3>
 
@@ -156,8 +159,7 @@ if( have_rows('report_content') ):
 					<?php endif; ?>
 
 					<?php if( get_row_layout() == 'text' ): ?>
-			            <!-- <li class="bullet-text"><?php the_sub_field('text_bullet'); ?></li> -->
-			            <div class="bullet-text"><i class="fas fa-circle"></i><?php the_sub_field('text_bullet'); ?></div>
+			            <div class="bullet-text"><?php the_sub_field('text_bullet'); ?></div>
 					<?php endif; ?>
 
 			        <?php if( get_row_layout() == 'image' ): ?>
@@ -184,7 +186,7 @@ if( have_rows('report_content') ):
 		<div class="container-background icon-list" style="background-image: url(<?php echo $i_bgnd; ?>);" id="<?php echo $i_id; ?>"> 
 			<div class="container">
 				<div class="row justify-content-center"> 
-					<div class="col-12 col-md-12">
+					<div class="col-11 col-md-12">
 						<div class="row justify-content-center">
 						<h3 class="icon-title"><?php echo $i_title; ?></h3>
 
@@ -198,8 +200,7 @@ if( have_rows('report_content') ):
 					<?php endif; ?>
 
 					<?php if( get_row_layout() == 'icon' ): ?>
-		            	<div class="icon-item col-6">
-		            		<span class="icon-img"><?php //echo get_sub_field('icon_image'); ?></span>
+		            	<div class="icon-item col-sm-11 col-md-6">
 		            		<span class="icon-img"><?php $icon = get_sub_field('icon_image'); echo $icon->element; ?></span>
 		            		<h5 class="icon-text"><?php echo get_sub_field('icon_text'); ?></h5>
 		            	</div>
@@ -238,7 +239,7 @@ if( have_rows('report_content') ):
 		<div class="container-background time-budget" style="background-image: url(<?php echo $t_bgnd; ?>);" id="<?php echo $t_id; ?>"> 
 			<div class="container"> 
 				<div class="row justify-content-center">
-					<div class="col-12 col-md-6">
+					<div class="col-11 col-md-6">
 						<h3 class="budget-title"><?php echo $t_title; ?></h3>
 					<?php if( $t_budget ): ?>
 						<p><?php echo $t_budget; ?></p>
@@ -273,7 +274,7 @@ endif;
 		<div class="container-background next-steps" style="background-image: url(<?php echo $ns_bgnd; ?>);"> 
 			<div class="container"> 
 				<div class="row justify-content-center">
-					<div class="col-12 col-md-6">
+					<div class="col-11 col-md-6">
 					<?php if( have_rows('next_steps') ): ?>
 						<h1 class="steps-title">Next Steps</h1>
 						<ol class="next-steps-list">
