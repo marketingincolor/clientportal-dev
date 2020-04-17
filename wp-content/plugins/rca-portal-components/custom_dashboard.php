@@ -69,11 +69,12 @@ if( current_user_can('editor') || current_user_can('administrator') ) {
 ?>
 
 
-	<div id="main-nav" class="container" style="text-align:center; margin-top:1em;">
-		<?php the_custom_logo(); ?>
-	</div>
+<div id="main-nav" class="container align-center">
+	<?php //the_custom_logo(); ?>
+	<img src="<?php echo get_stylesheet_directory_uri() . '/images/rca-portal-logo.png'; ?>" class="dash-logo">
+</div>
 
-<div class="wrap about-wrap">
+<div class="wrap about-wrap xcustom-wrap">
 
 <?php if( get_field('dash_title', $option_type) ): ?>
     <h1><?php the_field('dash_title', $option_type); ?></h1>
@@ -86,7 +87,6 @@ if( current_user_can('editor') || current_user_can('administrator') ) {
 <?php endif; ?>
 
 	<div class="changelog">
-		<h3><?php _e( 'Morbi leo risus, porta ac consectetur' ); ?></h3>
 
 		<div class="feature-section images-stagger-right">
 
@@ -94,41 +94,40 @@ if( current_user_can('editor') || current_user_can('administrator') ) {
 		    <?php the_field('dash_content', $option_type); ?>
 		<?php endif; ?>
 
-
 <?php if( current_user_can('subscriber') ) : ?>
 <!-- <a class="button button-primary button-hero XXXload-customize XXXhide-if-no-customize" href="./edit.php?post_type=report"><?php _e( 'View Reports' ); ?></a> -->
 
-<?php
-// using category slug
-$args = array(  
-	'post_type' => 'report', 
-	'posts_per_page' => -1, 
-	'post_status' => 'publish',
-	'orderby' => 'date', 
-	'order' => 'DESC', 
-	'tax_query' => array(
-		array(
-			'taxonomy' => 'clients',
-			'field'    => 'slug', // term_id, slug  
-			'terms'    => $term->slug,
-		),
-	)
-);
-$loop = new WP_Query($args);
+	<?php
+	// using category slug
+	$args = array(  
+		'post_type' => 'report', 
+		'posts_per_page' => -1, 
+		'post_status' => 'publish',
+		'orderby' => 'date', 
+		'order' => 'DESC', 
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'clients',
+				'field'    => 'slug', // term_id, slug  
+				'terms'    => $term->slug,
+			),
+		)
+	);
+	$loop = new WP_Query($args);
 
-if ( $loop->have_posts() ) {
-	echo '<h4>Current Reports:</h4>';
-    echo '<ul>';
-    while ( $loop->have_posts() ) {
-        $loop->the_post();
-        echo '<li><a href="' . get_the_permalink() . '" >'  . get_the_title() . '</a></li>';
-    }
-    echo '</ul>';
-} else {
-    // no posts found
-}
-/* Restore original Post Data */
-wp_reset_postdata();?>
+	if ( $loop->have_posts() ) {
+		echo '<h2>Current Reports</h2>';
+	    echo '<ul>';
+	    while ( $loop->have_posts() ) {
+	        $loop->the_post();
+	        echo '<li><a href="' . get_the_permalink() . '" class="custombutton">'  . get_the_title() . '</a>&nbsp;<a href="' . get_the_permalink() . '?output=pdf" class="custombutton">Download PDF</a></li>';
+	    }
+	    echo '</ul>';
+	} else {
+	    // no posts found
+	}
+	/* Restore original Post Data */
+	wp_reset_postdata();?>
 
 
 <?php endif; ?>
@@ -137,9 +136,9 @@ wp_reset_postdata();?>
 	<!-- <a class="button button-primary button-hero XXXload-customize XXXhide-if-no-customize" href="./edit.php?post_type=report"><?php _e( 'Manage Client Reports' ); ?></a> -->
 
 
-<h1 class="wp-heading-inline">Edit Reports</h1>
-<a href="http://localhost/clientportal-dev/wp-admin/post-new.php?post_type=report" class="page-title-action">Add New</a>
-<?php echo do_shortcode('[user_posts post_type="report" number="5"]'); ?>
+	<h1 class="wp-heading-inline">Edit Reports</h1>
+	<a href="http://localhost/clientportal-dev/wp-admin/post-new.php?post_type=report" class="page-title-action">Add New</a>
+	<?php echo do_shortcode('[user_posts post_type="report" number="5"]'); ?>
 
 <?php endif; ?>
 
