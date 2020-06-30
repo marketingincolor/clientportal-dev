@@ -137,8 +137,8 @@ if( current_user_can('editor') || current_user_can('administrator') ) {
 
 
 	<h1 class="wp-heading-inline">Edit Reports</h1>
-	<a href="http://localhost/clientportal-dev/wp-admin/post-new.php?post_type=report" class="page-title-action">Add New</a>
-	<?php echo do_shortcode('[user_posts post_type="report" number="5"]'); ?>
+	<a href="<?php echo site_url(); ?>/wp-admin/post-new.php?post_type=report" class="page-title-action">Add New</a>
+	<?php echo do_shortcode('[user_posts post_type="report" number="25"]'); ?>
 
 <?php endif; ?>
 

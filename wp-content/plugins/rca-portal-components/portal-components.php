@@ -70,8 +70,9 @@ function override_admin_bar_css() {
 	/* Custom Dashboard Layout */
 	#wpcontent { width:100%; margin:0; padding:0; }
 	.dashboard_page_custom-dashboard #main-nav { background-color:#c4612b; color:#fff; padding:2em; text-align:center; }
-	#main-nav img { max-width:75%; }
+	#main-nav img { max-width:90%; }
 
+	.wrap { max-width:960px; margin-left:auto; margin-right:auto; }
 	.wrap.about-wrap { max-width:960px; margin-left:auto; margin-right:auto; }
 	.about-wrap h1 { margin:.5em 0em; }
 	.about-wrap h2 { text-align:initial; }
@@ -87,7 +88,7 @@ function override_admin_bar_css() {
 		margin: .5em;
 		padding: .375em 1em;
 	}
-
+	.about-wrap li { margin-bottom:unset; padding:2em 0em; border-bottom: 1px solid; }
 @media screen and (max-width: 782px) {
 	.auto-fold #wpcontent { padding:0px 0px; }
 	.about-wrap { margin: 0px 15px !important; }
@@ -448,6 +449,7 @@ function portal_one_column_for_all( $order )
                         <thead>
                             <tr>
                                 <th>'.__( 'Title', 'lup' ).'</th>
+                                <th>'.__( 'Company', 'lup' ).'</th>
                                 <th>'.__( 'Status', 'lup' ).'</th>
                                 <th>'.__( 'Actions', 'lup' ).'</th>
                             </tr>
@@ -459,6 +461,11 @@ function portal_one_column_for_all( $order )
                 while ($user_posts->have_posts()){
                     $user_posts->the_post();
                     $title = $post->post_title;
+                    $post_categories = get_the_terms( $post->ID, 'clients' );
+                    if ( ! empty( $post_categories ) && ! is_wp_error( $post_categories ) ) {
+					    $categories = wp_list_pluck( $post_categories, 'name' );
+					}
+
                     $link = '<a href="'.get_permalink().'" title="'.sprintf( esc_attr__( 'Permalink to %s', 'lup' ), the_title_attribute( 'echo=0' ) ).'" rel="bookmark">'.$title.'</a>';
                     $retVal .= 
                             '<tr>
@@ -466,7 +473,10 @@ function portal_one_column_for_all( $order )
                                     '.( in_array( $post->post_status, array('draft', 'future', 'pending') ) ? $title : $link).'
                                 </td>
                                 <td>
-                                    '.$post->post_status .'
+                                    '. $categories[0] .'
+                                </td>
+                                <td>
+                                    '. $post->post_status .'
                                 </td>
                                 <td>
                                     <a href="./post.php?action=edit&post='.$post->ID.'"><span style="color: green;">'. __( 'Edit', 'lup' ).'</span></a>
